@@ -1,6 +1,7 @@
 package Model;
 
 public class Money {
+
     private final double amount;
     private final Currency currency;
 

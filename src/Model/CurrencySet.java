@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class CurrencySet implements Iterable<Currency>{
 
+    HashMap<String, Currency> map = new HashMap<>();
     @Override
     public Iterator<Currency> iterator() {
         return new Iterator<Currency>() {
