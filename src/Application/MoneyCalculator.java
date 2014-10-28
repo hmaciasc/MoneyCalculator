@@ -1,4 +1,4 @@
-package Aplication;
+package Application;
 
 public class MoneyCalculator {
 
