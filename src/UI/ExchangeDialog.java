@@ -6,15 +6,20 @@ import Model.Exchange;
 
 public class ExchangeDialog {
     
-    private CurrencySet set;
     private Exchange exchange;
+    private CurrencySet set;
 
-    public ExchangeDialog(Exchange exchange) {
+    public ExchangeDialog(Exchange exchange, CurrencySet set) {
         this.exchange = exchange;
+        this.set = set;
     }
-    
-    private  Execute (){
-        
+
+    public void execute() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Exchange getExchange() {
+        return exchange;
     }
     
     

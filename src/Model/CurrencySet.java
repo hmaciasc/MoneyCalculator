@@ -24,5 +24,8 @@ public class CurrencySet implements Iterable<Currency>{
                 
     }
     
+    public void add(Currency currency){
+        map.put(currency.getCode(), currency);
+    }
     
 }
