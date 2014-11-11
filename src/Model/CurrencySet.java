@@ -6,26 +6,24 @@ import java.util.Map;
 
 public class CurrencySet implements Iterable<Currency>{
 
-    HashMap<String, Currency> map = new HashMap<>();
-    @Override
-    public Iterator<Currency> iterator() {
-        return new Iterator<Currency>() {
-
-            @Override
-            public boolean hasNext() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Currency next() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-                
+    private final Map<String, Currency> map;
+    
+    public CurrencySet() {
+        this.map = new HashMap<>();
+    }
+    
+    public Currency get(String name){
+        return map.get(name);
     }
     
     public void add(Currency currency){
-        map.put(currency.getCode(), currency);
+        if (map.containsKey(currency.getCode())) return;
+        map.put(currency.getCode(), currency);     
+    }
+    
+    @Override
+    public Iterator<Currency> iterator() {
+        return map.values().iterator();
     }
     
 }

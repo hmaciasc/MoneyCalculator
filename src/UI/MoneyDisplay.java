@@ -13,7 +13,13 @@ public class MoneyDisplay {
     public MoneyDisplay(Money money) {
         this.money = money;
     }
-    
-    
+
+    public void execute() {
+        System.out.println(money);
+    }
+
+    public Money getMoney() {
+        return money;
+    }
     
 }

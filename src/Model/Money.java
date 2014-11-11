@@ -18,4 +18,10 @@ public class Money {
         return currency;
     }
 
+    @Override
+    public String toString() {
+        return "Money{" + "amount=" + amount;
+    }
+
+    
 }

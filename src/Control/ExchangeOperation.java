@@ -17,15 +17,15 @@ public class ExchangeOperation {
         this.currencySet = currencySet;
     }
     
-    private void execute (){
+    public void execute (){
         Exchange exchange = readExchange();
         ExchangeRate rate = readExchangeRate(exchange);
-        Exchanger.exchange();
-        MoneyDisplay.show();
+        Money money = calculate(exchange.getMoney(), rate);
+        show(money);
     }
 
     private Exchange readExchange(){
-        ExchangeDialog exchangeDialog = new ExchangeDialog(, currencySet);
+        ExchangeDialog exchangeDialog = new ExchangeDialog(currencySet);
         exchangeDialog.execute();
         return exchangeDialog.getExchange();
     }
@@ -34,6 +34,12 @@ public class ExchangeOperation {
         return new ExchangeRateLoader().load();
     }
 
-
+    private Money calculate (Money money, ExchangeRate exchangeRate){
+        return new Money(money.getAmount()*exchangeRate.getRate(), exchangeRate.getTo());
+    }
+    
+    private void show(Money money) {
+        new MoneyDisplay(money).execute();//duda
+    }
     
 }
