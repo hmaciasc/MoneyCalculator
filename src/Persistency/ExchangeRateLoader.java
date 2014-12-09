@@ -1,16 +1,10 @@
 package Persistency;
 
-import Model.Currency;
-import Model.ExchangeRate;
+import Model.ExchangeRateSet;
+import Model.CurrencySet;
 
-public class ExchangeRateLoader {
-    private ExchangeRate exchangeRate;
+public interface ExchangeRateLoader {
     
-    public ExchangeRate load(){
-        exchangeRate = new ExchangeRate(new Currency("EUR", "Euro", "€"), 
-                       new Currency("USD", "United State Dollar", "$"), 1.5, null);
-        return exchangeRate;
-    }
+        public ExchangeRateSet load ();
 
-    
 }

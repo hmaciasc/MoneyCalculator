@@ -4,7 +4,7 @@ import Model.CurrencySet;
 import Model.Exchange;
 import Model.ExchangeRate;
 import Model.Money;
-import Persistency.ExchangeRateLoader;
+import Persistency.ExchangeRateLoaderMock;
 import Process.Exchanger;
 import UI.ExchangeDialog;
 import UI.MoneyDisplay;
@@ -31,7 +31,7 @@ public class ExchangeOperation {
     }
 
     private ExchangeRate readExchangeRate(Exchange exchange) {
-        return new ExchangeRateLoader().load();
+        return new ExchangeRateLoaderMock().load();
     }
 
     private Money calculate (Money money, ExchangeRate exchangeRate){
