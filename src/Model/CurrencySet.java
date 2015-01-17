@@ -21,6 +21,12 @@ public class CurrencySet implements Iterable<Currency>{
         map.put(currency.getCode(), currency);     
     }
     
+    public Currency[] toArray (){
+        Currency[] currencies;
+        currencies = new Currency[map.keySet().size()];
+        return map.values().toArray(currencies);
+    }
+    
     @Override
     public Iterator<Currency> iterator() {
         return map.values().iterator();

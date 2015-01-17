@@ -20,7 +20,7 @@ public class Money {
 
     @Override
     public String toString() {
-        return "Money{" + "amount=" + amount;
+        return "Money " + "amount=" + amount;
     }
 
     

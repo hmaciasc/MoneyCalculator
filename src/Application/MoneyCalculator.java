@@ -10,9 +10,10 @@ public class MoneyCalculator {
     public static void main(String[] args) {
         // new currency Set
         // new exchange operation
-        //CurrencySet currencySet = new CurrencySetLoaderMock().load();
+        CurrencySet currencySet = new CurrencySetLoaderMock().load();
+        MoneyCalculatorFrame frame = new MoneyCalculatorFrame(currencySet);
+        frame.register(new ExchangeOperation(currencySet));
         //new ExchangeOperation(currencySet).execute();
-        new MoneyCalculatorFrame();
     }
     
 }
