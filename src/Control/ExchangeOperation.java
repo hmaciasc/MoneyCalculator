@@ -6,8 +6,8 @@ import Model.ExchangeRate;
 import Model.Money;
 import Persistency.ExchangeRateLoaderMock;
 import Process.Exchanger;
-import UI.ExchangeDialog;
-import UI.MoneyDisplay;
+import ui.ExchangeDialog;
+import ui.MoneyDisplay;
 
 public class ExchangeOperation {
     
