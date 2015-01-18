@@ -6,11 +6,13 @@ import java.util.Map;
 public class ExchangeRateSet {
     private Map<String, ExchangeRate> map;
 
+    public ExchangeRateSet() {
+        this.map = new HashMap<>();
+    }
+
     public ExchangeRate get(Currency from, Currency to){
-        map = new HashMap<>();
-        ExchangeRate rate1 = get(from);
-        ExchangeRate rate2 = get(to);
-        return new ExchangeRate(from, to, rate2.getRate() / rate1.getRate(), rate1.getDate());
+    ExchangeRate rate = map.get(from.getCode()+"-"+to.getCode());
+    return new ExchangeRate(from, to, rate.getRate(), rate.getDate());
     }
     
     public void add(ExchangeRate rate){

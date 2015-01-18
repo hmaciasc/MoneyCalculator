@@ -1,7 +1,8 @@
-package Persistency;
+package Mock;
 
 import Model.Currency;
 import Model.CurrencySet;
+import Persistency.CurrencyLoader;
 
 public class CurrencySetLoaderMock implements CurrencyLoader{
 

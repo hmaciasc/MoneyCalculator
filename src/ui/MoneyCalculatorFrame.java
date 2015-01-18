@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,19 +18,21 @@ public class MoneyCalculatorFrame extends JFrame{
 
     private ExchangeOperation command;
     private ExchangeDialogPanel exchangeDialog;
+    private CurrencyDialog currencyDialog;
     private CurrencySet currencySet;
     private MoneyDisplayLabel moneyDisplayLabel;
     
-    public MoneyCalculatorFrame(CurrencySet currencySet) {
+    public MoneyCalculatorFrame(CurrencySet currencySet) throws SQLException {
         this.currencySet = currencySet;
         setTitle("MoneyCalculator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(600, 300));
         createComponents();
         setVisible(true);
+        add(createMoneyDisplay(), NORMAL);
     }
 
-    private void createComponents() {
+    private void createComponents() throws SQLException {
         add(createExchangeDialog());
         add(createToolbar(), BorderLayout.SOUTH);
     }
@@ -55,8 +58,26 @@ public class MoneyCalculatorFrame extends JFrame{
         return label;
     }
 
+    /*    private JPanel createCurrencyDialogPanel() throws SQLException {
+    CurrencyDialogPanel panel = new CurrencyDialogPanel("USD");
+    this.currencyDialog = panel;
+    return panel;
+    }*/
+    
     public void register(ExchangeOperation command) {
         this.command = command;
+    }
+
+    public CurrencyDialog getCurrencyDialog() {
+        return currencyDialog;
+    }
+
+    public ExchangeDialogPanel getExchangeDialog() {
+        return exchangeDialog;
+    }
+
+    public MoneyDisplayLabel getMoneyDisplayLabel() {
+        return moneyDisplayLabel;
     }
     
     private JButton createCalculateButton() {

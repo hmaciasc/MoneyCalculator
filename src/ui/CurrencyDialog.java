@@ -1,18 +1,10 @@
 package ui;
 
-import java.awt.PopupMenu;
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
+import Model.Currency;
 
-public class CurrencyDialog extends JPanel {
 
-    public CurrencyDialog() {
-        super();
-        add(createCombobox());
-    }
+public interface CurrencyDialog{
 
-    private JComboBox createCombobox() {
-        return new JComboBox(new String[] {"EUR", "USD", "GBP"});
-    }
+    public Currency getCurrency();
     
 }

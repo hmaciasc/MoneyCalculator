@@ -2,6 +2,8 @@ package ui;
 
 import Model.Currency;
 import Model.CurrencySet;
+import Model.Exchange;
+import Model.Money;
 import java.awt.FlowLayout;
 import static java.awt.FlowLayout.LEFT;
 import java.awt.PopupMenu;
@@ -9,7 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-class ExchangeDialogPanel extends JPanel {
+public class ExchangeDialogPanel extends JPanel {
     
     private final CurrencySet currencySet;
     private JTextField amount;
@@ -20,6 +22,10 @@ class ExchangeDialogPanel extends JPanel {
         this.currencySet = currencySet;
         setLayout(new FlowLayout(LEFT));
         createComponents();
+    }
+    
+    public  Exchange getExchange(){
+        return new Exchange(new Money(getAmount(), getFromCurrency()), getToCurrency());
     }
     
     private double getAmount(){

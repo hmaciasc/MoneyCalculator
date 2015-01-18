@@ -1,37 +1,46 @@
 package Control;
 
+import Model.Currency;
 import Model.CurrencySet;
 import Model.Exchange;
 import Model.ExchangeRate;
 import Model.Money;
-import Persistency.ExchangeRateLoaderMock;
+import Mock.ExchangeRateLoaderMock;
+import Model.ExchangeRateSet;
+import Persistency.ExchangeRateLoaderDB;
 import Process.Exchanger;
 import ui.ExchangeDialog;
+import ui.ExchangeDialogPanel;
 import ui.MoneyDisplay;
+import ui.MoneyDisplayLabel;
 
 public class ExchangeOperation {
     
-    private CurrencySet currencySet;
+    private ExchangeDialogPanel exchangeDialog;
+    private MoneyDisplayLabel moneyDisplayLabel;
 
-    public ExchangeOperation(CurrencySet currencySet) {
-        this.currencySet = currencySet;
+    public ExchangeOperation(ExchangeDialogPanel exchangeDialog, MoneyDisplayLabel moneyDisplayLabel) {
+        this.exchangeDialog = exchangeDialog;
+        this.moneyDisplayLabel = moneyDisplayLabel;
     }
-    
+
     public void execute (){
         Exchange exchange = readExchange();
-        ExchangeRate rate = readExchangeRate(exchange);
+        ExchangeRate rate = readExchangeRate(exchange.getMoney().getCurrency(), exchange.getCurrency());
         Money money = calculate(exchange.getMoney(), rate);
         show(money);
     }
 
     private Exchange readExchange(){
-        ExchangeDialog exchangeDialog = new ExchangeDialog(currencySet);
-        exchangeDialog.execute();
         return exchangeDialog.getExchange();
     }
 
-    private ExchangeRate readExchangeRate(Exchange exchange) {
-        return new ExchangeRateLoaderMock().load();
+    private ExchangeRate readExchangeRate(Currency from, Currency to) {
+        CurrencySet currencySet = new CurrencySet();
+        currencySet.add(from);
+        currencySet.add(to);
+        ExchangeRateSet rateSet = new ExchangeRateLoaderDB(currencySet).load();
+        return rateSet.get(from, to);
     }
 
     private Money calculate (Money money, ExchangeRate exchangeRate){

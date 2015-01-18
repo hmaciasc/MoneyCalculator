@@ -5,24 +5,31 @@ import Model.CurrencySet;
 import Model.ExchangeRate;
 import Model.ExchangeRateSet;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
 public class ExchangeRateLoaderDB implements ExchangeRateLoader{
     
-    private final Connection connection;
+    private Connection connection;
     private final CurrencySet currencySet;
 
-    public ExchangeRateLoaderDB (Connection connection, CurrencySet currencySet) {
-        this.connection = connection;
+    public ExchangeRateLoaderDB (CurrencySet currencySet) {
         this.currencySet = currencySet;
+        currencySet.add(new Currency("EUR", "Euro", "€"));
     }
-    
+
+    public ExchangeRateLoaderDB() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
     @Override
     public ExchangeRateSet load() {
         try {
-            return processExchangeRateSet(connection.createStatement().executeQuery("SELECT * FROM CAMBIO_EUR_A"));
+            connection = DriverManager.getConnection("jdbc:sqlite:money");
+            return processExchangeRateSet(connection.createStatement().executeQuery("SELECT * FROM HISTORICO_CAMBIOS"));
         } catch (SQLException ex) {
             return new ExchangeRateSet();
         }
@@ -36,10 +43,13 @@ public class ExchangeRateLoaderDB implements ExchangeRateLoader{
     }
     
     private ExchangeRate processExchangeRate(ResultSet resultSet) throws SQLException{
-        return new ExchangeRate(currencySet.get(resultSet.getString(1)), 
-                currencySet.get("EUR"),
-                resultSet.getDouble(2),
-                processDate(resultSet)
+        String from = resultSet.getString(1);
+        String to = resultSet.getString(2);
+        return new ExchangeRate(new Currency(from, from, from), 
+                new Currency(to, to, to),
+                resultSet.getDouble(3),
+                //processDate(resultSet)
+                null
         );
     }
 

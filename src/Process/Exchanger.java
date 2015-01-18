@@ -7,9 +7,22 @@ public class Exchanger {
 
     private ExchangeRate exchangeRate;
     private Money money;
+
+    public Exchanger(ExchangeRate exchangeRate, Money money) {
+        this.exchangeRate = exchangeRate;
+        this.money = money;
+    }
     
-    public void exchange() {
-        calculate(money, exchangeRate);
+    public Money exchange() {
+        return calculate(money, exchangeRate);
+    }
+
+    public Money getMoney() {
+        return money;
+    }
+
+    public ExchangeRate getExchangeRate() {
+        return exchangeRate;
     }
     
     private Money calculate(Money money, ExchangeRate exchangeRate){
