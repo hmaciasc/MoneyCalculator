@@ -39,8 +39,8 @@ public class CurrencySetLoaderDB implements CurrencyLoader{
     private Currency processCurrency(ResultSet resultSet) throws SQLException {
         return new Currency(
                 resultSet.getString(DIVISA_INDEX), 
-                resultSet.getString(DIVISA_INDEX), 
-                resultSet.getString(DIVISA_INDEX));
+                resultSet.getString(2), 
+                resultSet.getString(3));
     }
     
 }
