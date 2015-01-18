@@ -5,13 +5,9 @@ import Model.CurrencySet;
 import Model.Exchange;
 import Model.ExchangeRate;
 import Model.Money;
-import Mock.ExchangeRateLoaderMock;
 import Model.ExchangeRateSet;
 import Persistency.ExchangeRateLoaderDB;
-import Process.Exchanger;
-import ui.ExchangeDialog;
 import ui.ExchangeDialogPanel;
-import ui.MoneyDisplay;
 import ui.MoneyDisplayLabel;
 
 public class ExchangeOperation {
@@ -48,7 +44,7 @@ public class ExchangeOperation {
     }
     
     private void show(Money money) {
-        new MoneyDisplay(money).execute();//duda
+        moneyDisplayLabel.showResult(money);
     }
     
 }

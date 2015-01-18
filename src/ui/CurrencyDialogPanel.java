@@ -4,7 +4,6 @@ import Model.Currency;
 import Model.CurrencySet;
 import Persistency.CurrencySetLoaderDB;
 import java.awt.FlowLayout;
-import java.awt.PopupMenu;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;

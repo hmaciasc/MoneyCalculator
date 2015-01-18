@@ -6,7 +6,6 @@ import Model.Exchange;
 import Model.Money;
 import java.awt.FlowLayout;
 import static java.awt.FlowLayout.LEFT;
-import java.awt.PopupMenu;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;

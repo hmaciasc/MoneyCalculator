@@ -20,11 +20,6 @@ public class ExchangeRateLoaderDB implements ExchangeRateLoader{
         currencySet.add(new Currency("EUR", "Euro", "€"));
     }
 
-    public ExchangeRateLoaderDB() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   
     @Override
     public ExchangeRateSet load() {
         try {
@@ -48,7 +43,6 @@ public class ExchangeRateLoaderDB implements ExchangeRateLoader{
         return new ExchangeRate(new Currency(from, from, from), 
                 new Currency(to, to, to),
                 resultSet.getDouble(3),
-                //processDate(resultSet)
                 null
         );
     }

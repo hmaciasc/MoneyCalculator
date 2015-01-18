@@ -11,8 +11,11 @@ public class ExchangeRateSet {
     }
 
     public ExchangeRate get(Currency from, Currency to){
-    ExchangeRate rate = map.get(from.getCode()+"-"+to.getCode());
-    return new ExchangeRate(from, to, rate.getRate(), rate.getDate());
+        if (from.getCode().equals(to.getCode())) {
+            return new ExchangeRate(from, to, 1.0, null);
+        }
+        ExchangeRate rate = map.get(from.getCode()+"-"+to.getCode());
+        return new ExchangeRate(from, to, rate.getRate(), rate.getDate());
     }
     
     public void add(ExchangeRate rate){

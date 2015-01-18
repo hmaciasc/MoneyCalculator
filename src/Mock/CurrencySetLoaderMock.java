@@ -6,7 +6,6 @@ import Persistency.CurrencyLoader;
 
 public class CurrencySetLoaderMock implements CurrencyLoader{
 
-    // Mock
     
     @Override
     public CurrencySet load(){
